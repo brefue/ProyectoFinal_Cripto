@@ -1,6 +1,8 @@
+import time
 #ChaCha20
 import os
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+inicioChaCha = time.time()
 key = os.urandom(32)
 iv = os.urandom(16)
 cipher = Cipher(algorithms.AES(key), modes.CBC(iv))
@@ -9,6 +11,8 @@ ct = encryptor.update(b"a secret message") + encryptor.finalize()
 print(ct)
 decryptor = cipher.decryptor()
 decryptor.update(ct) + decryptor.finalize()
+finChaCha = time.time()
+print(finChaCha-inicioChaCha)
 
 print()
 #AES-EBC
